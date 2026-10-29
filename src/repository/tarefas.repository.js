@@ -1,19 +1,29 @@
 import { eq } from 'drizzle-orm'
 import { db } from '../db/index.js'
-import { usuarios } from '../db/schemas/usuarios.js'
+import { tarefas } from '../db/schemas/tarefas.js'
 
-export async function buscarPorEmail(email) {
-  const [usuario] = await db
-    .select()
-    .from(usuarios)
-    .where(eq(usuarios.email, email))
-  return usuario
+export async function listar() {
+  return db.select().from(tarefas)
 }
 
 export async function criar(dados) {
-  const [novo] = await db
-    .insert(usuarios)
-    .values(dados)
-    .returning({ id: usuarios.id, nome: usuarios.nome, email: usuarios.email })
-  return novo
+  const [nova] = await db.insert(tarefas).values(dados).returning()
+  return nova
+}
+
+export async function atualizar(id, dados) {
+  const [atualizada] = await db
+    .update(tarefas)
+    .set(dados)
+    .where(eq(tarefas.id, id))
+    .returning()
+  return atualizada
+}
+
+export async function excluir(id) {
+  const [removida] = await db
+    .delete(tarefas)
+    .where(eq(tarefas.id, id))
+    .returning()
+  return removida
 }
