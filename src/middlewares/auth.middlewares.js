@@ -15,5 +15,5 @@ export function autenticar(req, res, next) {
     next()
   } catch {
     res.status(401).json({ erro: 'Token inválido ou expirado.' })
-  }
+  }adad
 }
