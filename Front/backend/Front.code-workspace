@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../professor joao/thierry/Front"
+		},
+		{
+			"path": "../../../../professor joao/thierry/TCC26k"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Front"
+	}
+}
